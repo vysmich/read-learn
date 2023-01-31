@@ -1,6 +1,13 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    onAuthStateChanged,
+    NextOrObserver,
+    User,
+} from "firebase/auth";
 
 const firebaseConfig = {
     apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -21,4 +28,15 @@ export const createUser = async (email: string, password: string) => {
         return;
     }
     await createUserWithEmailAndPassword(auth, email, password);
+};
+
+export const signIn = async (email: string, password: string) => {
+    if (!email || !password) {
+        return;
+    }
+    await signInWithEmailAndPassword(auth, email, password);
+};
+
+export const onAuthStateChangedListener = (callback: NextOrObserver<User>) => {
+    return onAuthStateChanged(auth, callback);
 };

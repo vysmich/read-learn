@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { createUser } from "../../utils/firebase/firebase.utils";
+import { InputField } from "../input-field/input-field.component";
 type Props = {};
 
 const defaultFormData = { email: "", password: "", confirmPassword: "", username: "" };
 
 export const SignUp = (props: Props) => {
     const [formData, setFormData] = useState(defaultFormData);
-    console.log(formData);
 
     const signUpHandler = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -27,65 +27,53 @@ export const SignUp = (props: Props) => {
             <div className='w-full max-w-md p-8 space-y-3 rounded-xl bg-gray-50 text-gray-800'>
                 <h1 className='text-2xl font-bold text-center'>Sign-up</h1>
                 <form onSubmit={signUpHandler} className='space-y-6 ng-untouched ng-pristine ng-valid'>
-                    <div className='space-y-1 text-sm'>
-                        <input
-                            value={formData.email}
-                            onChange={(e) => {
-                                setFormData({ ...formData, email: e.target.value });
-                            }}
-                            type='email'
-                            name='email'
-                            id='email'
-                            placeholder='Email'
-                            className='w-full px-4 py-3 rounded-md border-gray-300 bg-gray-50 text-gray-800 focus:border-violet-600'
-                        />
-                    </div>
-                    <div className='space-y-1 text-sm'>
-                        <input
-                            value={formData.username}
-                            onChange={(e) => {
-                                setFormData({ ...formData, username: e.target.value });
-                            }}
-                            type='text'
-                            name='username'
-                            id='username'
-                            placeholder='Username'
-                            className='w-full px-4 py-3 rounded-md border-gray-300 bg-gray-50 text-gray-800 focus:border-violet-600'
-                        />
-                    </div>
-                    <div className='space-y-1 text-sm'>
-                        <input
-                            value={formData.password}
-                            onChange={(e) => {
-                                setFormData({ ...formData, password: e.target.value });
-                            }}
-                            type='password'
-                            name='password'
-                            id='password'
-                            placeholder='Password'
-                            className='w-full px-4 py-3 rounded-md border-gray-300 bg-gray-50 text-gray-800 focus:border-violet-600'
-                        />
-                    </div>
-                    <div className='space-y-1 text-sm'>
-                        <input
-                            value={formData.confirmPassword}
-                            onChange={(e) => {
-                                setFormData({ ...formData, confirmPassword: e.target.value });
-                            }}
-                            type='password'
-                            name='confirmPassword'
-                            id='confirmPassword'
-                            placeholder='Confirm password'
-                            className='w-full px-4 py-3 rounded-md border-gray-300 bg-gray-50 text-gray-800 focus:border-violet-600'
-                        />
-                    </div>
+                    <InputField
+                        value={formData.email}
+                        onChange={(e) => {
+                            setFormData({ ...formData, email: e.target.value });
+                        }}
+                        type='email'
+                        name='email'
+                        id='email'
+                        placeholder='Email'
+                    />
+                    <InputField
+                        value={formData.username}
+                        onChange={(e) => {
+                            setFormData({ ...formData, username: e.target.value });
+                        }}
+                        type='text'
+                        name='username'
+                        id='username'
+                        placeholder='Username'
+                    />
+                    <InputField
+                        type='password'
+                        name='password'
+                        id='password'
+                        placeholder='Password'
+                        value={formData.password}
+                        onChange={(e) => {
+                            setFormData({ ...formData, password: e.target.value });
+                        }}
+                    />
+                    <InputField
+                        type='password'
+                        name='confirmPassword'
+                        id='confirmPassword'
+                        placeholder='Confirm password'
+                        value={formData.confirmPassword}
+                        onChange={(e) => {
+                            setFormData({ ...formData, confirmPassword: e.target.value });
+                        }}
+                    />
                     <button className='block w-full p-3 text-center rounded-sm text-gray-50 bg-violet-600'>
                         Sign in
                     </button>
                 </form>
                 <div className='flex items-center pt-4 space-x-1'>
                     <div className='flex-1 h-px sm:w-16 bg-gray-300'></div>
-                    <p className='px-3 text-sm text-gray-600'>Login with social accounts</p>
+                    <p className='px-3 text-sm text-gray-600'>Sign up with social accounts</p>
                     <div className='flex-1 h-px sm:w-16 bg-gray-300'></div>
                 </div>
                 <div className='flex justify-center space-x-4'>
@@ -105,12 +93,6 @@ export const SignUp = (props: Props) => {
                         </svg>
                     </button>
                 </div>
-                <p className='text-xs text-center sm:px-6 text-gray-600'>
-                    Don't have an account?
-                    <a rel='noopener noreferrer' href='#' className='underline text-gray-800'>
-                        Sign up
-                    </a>
-                </p>
             </div>
         </div>
     );
