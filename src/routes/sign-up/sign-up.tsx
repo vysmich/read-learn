@@ -3,7 +3,7 @@ import React, { useState, FC } from "react";
 import { InputField } from "../../components/input-field/input-field.component";
 import { SocialSignUp } from "../../components/social-sign-up/social-sign-up";
 //hooks
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 //utils
 import { createUserWithEmail, setUserToDB } from "../../utils/firebase/firebase.utils";
 //firebase
@@ -93,10 +93,10 @@ export const SignUp: FC = () => {
                 </form>
                 <SocialSignUp />
                 <p className='text-xs text-center sm:px-6 text-gray-600'>
-                    Already have an account??
-                    <a rel='noopener noreferrer' href='#' className='underline text-gray-800'>
+                    Already have an account??{" "}
+                    <Link to={"/"} className='underline text-gray-800'>
                         Login
-                    </a>
+                    </Link>
                 </p>
             </div>
         </div>

@@ -8,6 +8,7 @@ import { isUserInDB, onAuthStateChangedListener, setUserToDB } from "./utils/fir
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentUser } from "./store/user/user";
 import { Navigation } from "./routes/navigation/navigation";
+import { PasswordReset } from "./routes/password-reset/password-reset";
 
 function App() {
     const dispatch = useDispatch();
@@ -31,6 +32,7 @@ function App() {
                         <Route index element={<Login />} />
                         <Route path='books' element={<Books />} />
                         <Route path='sign-up' element={<SignUp />} />
+                        <Route path='password-reset' element={<PasswordReset />} />
                     </Route>
                 </Routes>
             </section>

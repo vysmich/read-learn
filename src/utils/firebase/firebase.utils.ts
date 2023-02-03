@@ -12,7 +12,7 @@ import {
     FacebookAuthProvider,
     GithubAuthProvider,
     signOut,
-    getRedirectResult,
+    sendPasswordResetEmail,
 } from "firebase/auth";
 import { doc, getDoc, getFirestore, setDoc } from "firebase/firestore";
 
@@ -81,6 +81,21 @@ export const signIn = async (email: string, password: string) => {
 
 export const onAuthStateChangedListener = (callback: NextOrObserver<User>) => {
     return onAuthStateChanged(auth, callback);
+};
+
+export const resetPassword = async (email: string) => {
+    if (!email) {
+        alert("Please enter your email");
+    }
+    try {
+        await sendPasswordResetEmail(auth, email);
+    } catch (error: any) {
+        if (error.code === "auth/user-not-found") {
+            alert("There is no user record corresponding to this email");
+        } else {
+            console.log(error);
+        }
+    }
 };
 
 export const signOutUser = async () => {

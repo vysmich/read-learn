@@ -27,10 +27,10 @@ export const Navigation: FC = (props: Props) => {
                             </button>
                         ) : (
                             <>
-                                <Link to='/sign-in'>
+                                <Link to='/sign-up'>
                                     <button className='self-center px-8 py-3 rounded'>Sign in</button>
                                 </Link>
-                                <Link to='/login'>
+                                <Link to='/'>
                                     <button className='self-center px-8 py-3 font-semibold rounded bg-violet-600 text-gray-50'>
                                         Login
                                     </button>

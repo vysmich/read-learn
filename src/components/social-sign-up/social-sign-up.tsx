@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 //Firebase
 import { signInWithFacebook, signInWithGoogle, signInWithGithub } from "../../utils/firebase/firebase.utils";
 
@@ -17,7 +17,7 @@ export const SocialSignUp: FC = () => {
         <>
             <div className='flex items-center pt-4 space-x-1'>
                 <div className='flex-1 h-px sm:w-16 bg-gray-300'></div>
-                <p className='px-3 text-sm text-gray-600'> Or sign up with social accounts</p>
+                <p className='px-3 text-sm text-gray-600'> Or use social accounts</p>
                 <div className='flex-1 h-px sm:w-16 bg-gray-300'></div>
             </div>
             <div className='flex justify-center space-x-4'>

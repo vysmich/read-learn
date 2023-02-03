@@ -5,10 +5,12 @@ import { SocialSignUp } from "../../components/social-sign-up/social-sign-up";
 //utils
 import { signIn } from "../../utils/firebase/firebase.utils";
 //hooks
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 //types
 import { RootState } from "../../store/store";
+import { SignUp } from "./../sign-up/sign-up";
+import { Loading } from "./../../components/loading/loading.component";
 
 const defaultFormData = { email: "", password: "", confirmPassword: "", username: "" };
 
@@ -16,6 +18,7 @@ export const Login: FC = () => {
     const [formData, setFormData] = useState(defaultFormData);
     const navigate = useNavigate();
     const currentUser = useSelector((state: RootState) => state.user.currentUser);
+
     useEffect(() => {
         if (currentUser) {
             navigate("/books");
@@ -63,9 +66,7 @@ export const Login: FC = () => {
                         }}
                     />
                     <div className='flex justify-end text-xs text-gray-600'>
-                        <a rel='noopener noreferrer' href='#'>
-                            Forgot Password?
-                        </a>
+                        <Link to={"/password-reset"}>Forgot Password?</Link>
                     </div>
 
                     <button className='block w-full p-3 text-center rounded-sm text-gray-50 bg-violet-600'>
@@ -76,10 +77,10 @@ export const Login: FC = () => {
                 <SocialSignUp />
 
                 <p className='text-xs text-center sm:px-6 text-gray-600'>
-                    Don't have an account?
-                    <a rel='noopener noreferrer' href='#' className='underline text-gray-800'>
+                    Don't have an account?{" "}
+                    <Link to={"/sign-Up"} className='underline text-gray-800'>
                         Sign up
-                    </a>
+                    </Link>
                 </p>
             </div>
         </div>
