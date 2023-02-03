@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "../store";
 
 const initialState = {
-    currentUser: 0,
+    currentUser: null,
 };
 
 export const userSlice = createSlice({

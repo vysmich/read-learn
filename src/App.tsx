@@ -1,21 +1,24 @@
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Login } from "./components/login/login.component";
-import { SignUp } from "./components/sign-up/sign-up.component";
+import { Login } from "./routes/login/login";
+import { SignUp } from "./routes/sign-up/sign-up";
+import { Books } from "./routes/Books/books";
 import { useEffect } from "react";
-import { onAuthStateChangedListener } from "./utils/firebase/firebase.utils";
+import { isUserInDB, onAuthStateChangedListener, setUserToDB } from "./utils/firebase/firebase.utils";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentUser } from "./store/user/user";
+import { Navigation } from "./routes/navigation/navigation";
 
 function App() {
     const dispatch = useDispatch();
-    const user = useSelector((state: any) => state.user);
     useEffect(() => {
         const unsubscribe = onAuthStateChangedListener((user) => {
             if (user) {
                 dispatch(setCurrentUser(user));
+                setUserToDB(user);
             } else {
-                console.log("user is logged out");
+                dispatch(setCurrentUser(null));
+                // console.log("user is logged out");
             }
         });
     }, []);
@@ -24,9 +27,11 @@ function App() {
         <BrowserRouter>
             <section>
                 <Routes>
-                    <Route path='/' element={<div>Home</div>} />
-                    <Route path='login' element={<Login />} />
-                    <Route path='sign-up' element={<SignUp />} />
+                    <Route path='/' element={<Navigation />}>
+                        <Route index element={<Login />} />
+                        <Route path='books' element={<Books />} />
+                        <Route path='sign-up' element={<SignUp />} />
+                    </Route>
                 </Routes>
             </section>
         </BrowserRouter>
