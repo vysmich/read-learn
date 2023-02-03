@@ -1,4 +1,4 @@
-import React, { useEffect, FC } from "react";
+import React, { useEffect, FC, useState } from "react";
 //hooks
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { RootState } from "../../store/store";
 
 export const Books: FC = () => {
+    const [book, setBook] = useState<any>();
     const navigate = useNavigate();
     const currentUser = useSelector((state: RootState) => state.user.currentUser);
     useEffect(() => {
@@ -13,6 +14,20 @@ export const Books: FC = () => {
             navigate("/");
         }
     }, [currentUser]);
+
+    useEffect(() => {
+        fetch("https://gutendex.com/books/")
+            .then((res) => res.json())
+            .then((data) => setBook(data));
+    }, []);
+    const reader = new FileReader();
+
+    // const bookOne = book ? new Blob(book.results[0].formats["text/plain"]) : null;
+    console.log(book.results[0].formats["text/plain"]);
+    // console.log(bookOne);
+    // if (bookOne) {
+    //     console.log(reader.readAsDataURL(bookOne));
+    // }
 
     return (
         <>
