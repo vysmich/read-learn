@@ -13,7 +13,7 @@
 <li>Redux</li>
 </ul><h2>Road map</h2>
 <hr><ul>
-<li>User account</li>
+<li><s>User auth</s></li>
 </ul><ul>
 <li>Ebook reader</li>
 </ul><ul>
